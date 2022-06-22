@@ -1,5 +1,6 @@
 import React from "react";
-import Table from './components/table';
+import "./sass/style.scss";
+import Table from './components/Table';
 
 const App: React.FC = () => {
   return (

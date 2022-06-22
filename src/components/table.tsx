@@ -5,6 +5,8 @@ import DATA from '../data';
 const Table: React.FC = () => {
     const [data, setData] = useState(DATA)
     const [firstRow, setFirstRow] = useState(0)
+    const [sortColumn, setSortColumn] = useState('Название')
+    const [userValue, setUserValue] = useState('')
 
     useEffect(() => {
 
@@ -25,6 +27,26 @@ const Table: React.FC = () => {
 
     return (
         <div className="citiesTable__wrapper">
+            <div className="header__wrapper">
+                <select value={sortColumn} onChange={e => setSortColumn(e.target.value)}>
+                    <option value='Название'>Название</option>
+                    <option value='Колличество'>Колличество</option>
+                    <option value='Расстояние'>Расстояние</option>
+                </select>
+                <select>
+                    {sortColumn === 'Название' ? (
+                        <option value='Содержит'>Содержит</option>
+                    ) : (
+                        <>
+                            <option value='Равно'>{'='}</option>
+                            <option value='Больше'>{'>'}</option>
+                            <option value='Меньше'>{'<'}</option>
+                        </>
+                    )}
+                </select>
+                <input type="text" value={userValue} onChange={e => setUserValue(e.target.value)} />
+            </div>
+
             <table className="citiesTable">
                 <thead>
                     <tr>
